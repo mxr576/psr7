@@ -12,14 +12,6 @@ use Psr\Http\Message\UriInterface;
  */
 class Uri implements UriInterface
 {
-    /**
-     * Absolute http and https URIs require a host per RFC 7230 Section 2.7
-     * but in generic URIs the host can be empty. So for http(s) URIs
-     * we apply this default host when no host is given yet to form a
-     * valid URI.
-     */
-    const HTTP_DEFAULT_HOST = 'localhost';
-
     private static $defaultPorts = [
         'http'  => 80,
         'https' => 443,
@@ -736,10 +728,6 @@ class Uri implements UriInterface
 
     private function validateState()
     {
-        if ($this->host === '' && ($this->scheme === 'http' || $this->scheme === 'https')) {
-            $this->host = self::HTTP_DEFAULT_HOST;
-        }
-
         if ($this->getAuthority() === '') {
             if (0 === strpos($this->path, '//')) {
                 throw new \InvalidArgumentException('The path of a URI without an authority must not start with two slashes "//"');
