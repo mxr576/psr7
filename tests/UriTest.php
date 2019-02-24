@@ -502,24 +502,6 @@ class UriTest extends BaseTest
         $this->assertSame(':8080', $uri->getAuthority());
     }
 
-    public function testHostInHttpUriDefaultsToLocalhost()
-    {
-        $uri = (new Uri())->withScheme('http');
-
-        $this->assertSame('localhost', $uri->getHost());
-        $this->assertSame('localhost', $uri->getAuthority());
-        $this->assertSame('http://localhost', (string) $uri);
-    }
-
-    public function testHostInHttpsUriDefaultsToLocalhost()
-    {
-        $uri = (new Uri())->withScheme('https');
-
-        $this->assertSame('localhost', $uri->getHost());
-        $this->assertSame('localhost', $uri->getAuthority());
-        $this->assertSame('https://localhost', (string) $uri);
-    }
-
     public function testFileSchemeWithEmptyHostReconstruction()
     {
         $uri = new Uri('file:///tmp/filename.ext');

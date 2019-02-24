@@ -329,7 +329,7 @@ class ServerRequestTest extends BaseTest
             ],
             'Invalid host' => [
                 'https://localhost/blog/article.php?id=10&user=foo',
-                array_merge($server, ['HTTP_HOST' => 'a:b']),
+                array_merge($server, ['HTTP_HOST' => 'localhost']),
             ],
             'Different port with SERVER_PORT' => [
                 'https://www.example.org:8324/blog/article.php?id=10&user=foo',
@@ -340,7 +340,7 @@ class ServerRequestTest extends BaseTest
                 array_merge($server, ['REQUEST_URI' => '/blog/article.php']),
             ],
             'Empty server variable' => [
-                'http://localhost',
+                'http:',
                 [],
             ],
         ];
